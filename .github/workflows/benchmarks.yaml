@@ -40,7 +40,7 @@ jobs:
           title: 'Benchmarking report'
 
   native-linux-x86:
-    #if: false
+    if: false
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -75,7 +75,7 @@ jobs:
           title: 'Benchmarking report'
 
   native-macos-x86:
-    #if: false
+    if: false
     runs-on: macos-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -110,7 +110,7 @@ jobs:
           title: 'Benchmarking report'
 
   native-macos-arm64:
-    #if: false
+    if: false
     runs-on: macos-14
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -145,7 +145,7 @@ jobs:
           title: 'Benchmarking report'
 
   js:
-    #if: false
+    if: false
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -180,7 +180,7 @@ jobs:
           title: 'Benchmarking report'
 
   wasmJs:
-    #if: false
+    if: false
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it

@@ -52,7 +52,7 @@ benchmark {
 
     configurations {
         named("main") {
-            advanced("jvmForks", 3)
+            advanced("jvmForks", 1)
         }
     }
 }
