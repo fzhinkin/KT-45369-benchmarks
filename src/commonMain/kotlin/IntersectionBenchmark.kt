@@ -17,6 +17,19 @@ public infix fun <T> Iterable<T>.intersectOptimized(other: Iterable<T>): Set<T> 
     return set
 }
 
+public infix fun <T> Iterable<T>.intersectFixed(other: Iterable<T>): Set<T> {
+    val result = mutableSetOf<T>()
+
+    val otherCollection = if (other is Collection<T>) other else other.toList()
+    for (e in this) {
+        if (otherCollection.contains(e)) {
+            result.add(e)
+        }
+    }
+
+    return result
+}
+
 public infix fun <T> Iterable<T>.intersectOptimized2(other: Iterable<T>): Set<T> {
     if (other is Set) {
         val set = mutableSetOf<T>()
@@ -94,10 +107,10 @@ abstract class IntersectionBenchmarkBase {
     @Param("0", "10", "1000")
     var parameterSize: Int = 0
 
-    @Param("Set", "List")
+    @Param("Set", "List", "Iter")
     var receiverType: String = ""
 
-    @Param("Set", "List")
+    @Param("Set", "List", "Iter")
     var parameterType: String = ""
 
     @Param("0.1", "0.5", "0.9")
@@ -120,13 +133,16 @@ abstract class IntersectionBenchmarkBase {
     @Benchmark
     fun baseline(): Set<Int> = receiver.intersect(parameter)
 
-    @Benchmark
+    //@Benchmark
     fun optimized(): Set<Int> = receiver.intersectOptimized(parameter)
 
     @Benchmark
+    fun fixed(): Set<Int> = receiver.intersectFixed(parameter)
+
+    //@Benchmark
     fun optimized2(): Set<Int> = receiver.intersectOptimized2(parameter)
 
-    @Benchmark
+    //@Benchmark
     fun optimized3(): Set<Int> = receiver.intersectOptimized3(parameter)
 }
 

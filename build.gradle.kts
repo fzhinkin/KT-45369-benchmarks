@@ -4,8 +4,8 @@ import org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension
 import org.jetbrains.kotlin.gradle.targets.js.npm.tasks.KotlinNpmInstallTask
 
 plugins {
-    kotlin("multiplatform") version "1.9.22"
-    id("org.jetbrains.kotlinx.benchmark") version "0.4.10"
+    kotlin("multiplatform") version "2.0.20"
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.12"
 }
 
 group = "org.example"
@@ -24,14 +24,13 @@ kotlin {
     macosX64()
     linuxX64()
 
-    @OptIn(ExperimentalWasmDsl::class)
     wasmJs { nodejs() }
     js(IR) { nodejs() }
 
     sourceSets {
         commonMain {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.10")
+                implementation("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.12")
             }
         }
     }
@@ -57,11 +56,3 @@ benchmark {
     }
 }
 
-rootProject.the<NodeJsRootExtension>().apply {
-    nodeVersion = "21.0.0-v8-canary202310177990572111"
-    nodeDownloadBaseUrl = "https://nodejs.org/download/v8-canary"
-}
-
-rootProject.tasks.withType<KotlinNpmInstallTask>().configureEach {
-    args.add("--ignore-engines")
-}
